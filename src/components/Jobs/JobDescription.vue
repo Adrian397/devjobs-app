@@ -1,70 +1,47 @@
+<script setup>
+const props = defineProps({
+  company: String,
+  position: String,
+  postedAt: String,
+  contract: String,
+  location: String,
+  description: String,
+  reqContent: String,
+  reqItems: Array,
+  roleContent: String,
+  roleItems: Array,
+});
+</script>
+
 <template>
   <main>
     <div class="main-jobtype">
       <div class="main-jobtype__title">
-        <span>1w ago</span>
+        <span>{{ props.postedAt }}</span>
         <span class="dot">.</span>
-        <span>Part Time</span>
-        <h2>Senior Software Engineer</h2>
-        <p class="country">United Kingdom</p>
+        <span>{{ props.contract }}</span>
+        <h2>{{ props.position }}</h2>
+        <p class="country">{{ props.location }}</p>
       </div>
+
       <ApplyNowBtn />
     </div>
     <p>
-      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus
-      hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel,
-      dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet
-      viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh.
-      Nullam mollis. Ut justo. Suspendisse potenti. Sed egestas, ante et
-      vulputate volutpat, eros pede semper est, vitae luctus metus libero eu
-      augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id,
-      est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at
-      felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod
-      dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu,
-      fermentum et, dapibus sed, urna.
+      {{ props.description }}
     </p>
     <h3>Requirements</h3>
     <p>
-      Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a
-      ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero
-      dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius,
-      adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam
-      pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida
-      vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu,
-      vulputate vel, nisl.
+      {{ props.reqContent }}
     </p>
     <ul>
-      <li>Morbi interdum mollis sapien. Sed</li>
-      <li>
-        Phasellus lacinia magna a ullamcorper laoreet, lectus arcu pulvinar
-        risus
-      </li>
-      <li>
-        Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel,
-        tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus.
-      </li>
-      <li>Morbi interdum mollis sapien. Sed</li>
+      <li v-for="item in props.reqItems">{{ item }}</li>
     </ul>
     <h3>What You Will Do</h3>
     <p>
-      Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae
-      luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing,
-      commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit
-      tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices
-      sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl.
-      Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.
+      {{ props.roleContent }}
     </p>
     <ol>
-      <li>Morbi interdum mollis sapien. Sed</li>
-      <li>
-        Phasellus lacinia magna a ullamcorper laoreet, lectus arcu pulvinar
-        risus
-      </li>
-      <li>
-        Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel,
-        tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus.
-      </li>
-      <li>Morbi interdum mollis sapien. Sed</li>
+      <li v-for="item in props.roleItems">{{ item }}</li>
     </ol>
   </main>
 </template>

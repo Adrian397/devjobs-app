@@ -5,6 +5,7 @@ const store = createStore({
     return {
       jobs: [],
       jobOverview: false,
+      offer: {},
     };
   },
 
@@ -13,8 +14,17 @@ const store = createStore({
       state.jobs = jobs;
     },
 
-    setJobOverview(state) {
-      state.jobOverview = true;
+    selectedOffer(state, id) {
+      state.jobOverview = !state.jobOverview;
+      state.offer = state.jobs.find((job) => job.id === id);
+    },
+
+    initStore(state) {
+      if (localStorage.getItem("store")) {
+        this.replaceState(
+          Object.assign(state, JSON.parse(localStorage.getItem("store")))
+        );
+      }
     },
   },
 
@@ -35,6 +45,13 @@ const store = createStore({
               postedAt: job.postedAt,
               contract: job.contract,
               location: job.location,
+              website: job.website,
+              apply: job.apply,
+              description: job.description,
+              reqContent: job.requirements.content,
+              reqItems: job.requirements.items,
+              roleContent: job.role.content,
+              roleItems: job.role.items,
             };
           });
           context.commit("setJobs", transformedData);
@@ -43,6 +60,14 @@ const store = createStore({
 
     setJobOverview(context) {
       context.commit("setJobOverview");
+    },
+
+    selectedOffer(context, id) {
+      context.commit("selectedOffer", id);
+    },
+
+    initStore(context) {
+      context.commit("initStore");
     },
   },
 
@@ -54,7 +79,14 @@ const store = createStore({
     jobOverview(state) {
       return state.jobOverview;
     },
+
+    offer(state) {
+      return state.offer;
+    },
   },
 });
 
+store.subscribe((_, state) => {
+  localStorage.setItem("store", JSON.stringify(state));
+});
 export default store;

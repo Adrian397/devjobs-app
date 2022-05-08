@@ -1,8 +1,14 @@
+<script setup>
+const props = defineProps({
+  position: String,
+});
+</script>
+
 <template>
   <footer>
     <div>
       <div class="footer-jobtype">
-        <h3>Senior Software Engineer</h3>
+        <h3>{{ props.position }}</h3>
         <p>So Digital Inc.</p>
       </div>
       <ApplyNowBtn />
@@ -20,7 +26,6 @@ footer {
 footer > div {
   width: 70rem;
   max-width: 90%;
-
   margin: auto;
   display: flex;
   justify-content: space-between;

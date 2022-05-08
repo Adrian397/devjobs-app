@@ -1,7 +1,22 @@
+<script setup>
+import { computed } from "vue";
+/*
+// const props = defineProps({
+//   logo: String,
+//   logoBackground: String,
+//   website: String,
+//   company: String,
+// });
+
+// const logoBackgroundColor = computed(() => {
+//   return "background-color: " + concreteOffer.logoBackground;
+// }); */
+</script>
+
 <template>
   <div class="job-header">
     <div class="header-img">
-      <img src="/assets/logos/scoot.svg" alt="job-logo" />
+      <img src="./assets/logos/scoot.svg" alt="job-logo" />
     </div>
     <div class="header-info">
       <div>

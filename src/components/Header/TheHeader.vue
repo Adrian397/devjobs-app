@@ -12,6 +12,10 @@ const store = useStore();
 const jobOverview = computed(() => {
   return store.getters.jobOverview;
 });
+
+const concreteOffer = computed(() => {
+  return store.getters.offer;
+});
 </script>
 
 <template>
@@ -29,7 +33,13 @@ const jobOverview = computed(() => {
         <IconMoon />
       </div>
     </div>
-    <JobHeader v-if="jobOverview" />
+    <JobHeader
+      v-if="jobOverview"
+      :company="concreteOffer.company"
+      :website="concreteOffer.website"
+      :logo="concreteOffer.logo"
+      :background-color="concreteOffer.backgroundColor"
+    />
     <JobsFilter v-else />
   </header>
 </template>

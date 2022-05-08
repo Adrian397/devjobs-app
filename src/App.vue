@@ -1,20 +1,11 @@
 <script setup>
 import TheHeader from "./components/Header/TheHeader.vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+store.dispatch("initStore");
 </script>
-<!-- 
-<script>
-import TheHeader from "./components/Header/TheHeader.vue";
-export default {
-  components: { TheHeader },
-  setup() {
-    console.log("setup");
-  },
-  beforeRouteEnter(to, from, next) {
-    console.log(to, from);
-    next();
-  },
-};
-</script> -->
 
 <template>
   <TheHeader />

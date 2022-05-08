@@ -10,5 +10,6 @@ button {
   color: white;
   background-color: rgb(89, 100, 224);
   border-radius: 5px;
+  cursor: pointer;
 }
 </style>

@@ -22,8 +22,8 @@ const logoBackgroundColor = computed(() => {
   return "background-color: " + props.logoBackground;
 });
 
-const setJobOverview = () => {
-  store.dispatch("setJobOverview");
+const selectedOffer = () => {
+  store.dispatch("selectedOffer", props.id);
 };
 </script>
 
@@ -36,7 +36,7 @@ const setJobOverview = () => {
       <span>{{ props.postedAt }}</span>
       <span class="dot">.</span>
       <span>{{ props.contract }}</span>
-      <router-link @click="setJobOverview" :to="concreteOffer">{{
+      <router-link @click="selectedOffer" :to="concreteOffer">{{
         props.position
       }}</router-link>
       <p>{{ props.company }}</p>
