@@ -1,38 +1,24 @@
 <script setup>
 import TheHeader from "./components/Header/TheHeader.vue";
-import JobOffer from "./components/Jobs/JobOffer.vue";
-import OffersList from "./components/Jobs/OffersList.vue";
-
-import { computed, onMounted } from "vue";
-import { useStore } from "vuex";
-
-const store = useStore();
-
-onMounted(() => {
-  store.dispatch("loadJobs");
-});
-
-const jobs = computed(() => {
-  return store.getters.jobs;
-});
 </script>
+<!-- 
+<script>
+import TheHeader from "./components/Header/TheHeader.vue";
+export default {
+  components: { TheHeader },
+  setup() {
+    console.log("setup");
+  },
+  beforeRouteEnter(to, from, next) {
+    console.log(to, from);
+    next();
+  },
+};
+</script> -->
 
 <template>
   <TheHeader />
-  <OffersList>
-    <JobOffer
-      v-for="job in jobs"
-      :key="job.id"
-      :id="job.id"
-      :company="job.company"
-      :logo="job.logo"
-      :logo-background="job.logoBackground"
-      :position="job.position"
-      :postedAt="job.postedAt"
-      :contract="job.contract"
-      :location="job.location"
-    />
-  </OffersList>
+  <router-view></router-view>
 </template>
 
 <style>

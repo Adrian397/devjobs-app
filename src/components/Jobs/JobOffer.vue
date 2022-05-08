@@ -1,7 +1,11 @@
 <script setup>
 import { computed } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
 
 const props = defineProps({
+  id: Number,
   company: String,
   logo: String,
   logoBackground: String,
@@ -11,9 +15,16 @@ const props = defineProps({
   location: String,
 });
 
+const concreteOffer = computed(() => {
+  return "/jobs/" + props.id;
+});
 const logoBackgroundColor = computed(() => {
   return "background-color: " + props.logoBackground;
 });
+
+const setJobOverview = () => {
+  store.dispatch("setJobOverview");
+};
 </script>
 
 <template>
@@ -25,7 +36,9 @@ const logoBackgroundColor = computed(() => {
       <span>{{ props.postedAt }}</span>
       <span class="dot">.</span>
       <span>{{ props.contract }}</span>
-      <h3>{{ props.position }}</h3>
+      <router-link @click="setJobOverview" :to="concreteOffer">{{
+        props.position
+      }}</router-link>
       <p>{{ props.company }}</p>
     </div>
     <p class="country">{{ props.location }}</p>
@@ -46,8 +59,17 @@ const logoBackgroundColor = computed(() => {
   flex-direction: column;
 }
 
-h3 {
+a {
   margin: 0.6rem 0rem;
+  display: block;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  color: rgba(18, 23, 33, 1);
+}
+
+a:hover {
+  color: rgba(18, 23, 33, 0.5);
 }
 
 .dot {
@@ -63,7 +85,6 @@ h3 {
   position: absolute;
   left: 5%;
   top: -10%;
-  background: hsl(36, 87%, 49%);
   width: 3.5rem;
   height: 3rem;
   border-radius: 13px;

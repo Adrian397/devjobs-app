@@ -4,6 +4,7 @@ const store = createStore({
   state() {
     return {
       jobs: [],
+      jobOverview: false,
     };
   },
 
@@ -11,11 +12,15 @@ const store = createStore({
     setJobs(state, jobs) {
       state.jobs = jobs;
     },
+
+    setJobOverview(state) {
+      state.jobOverview = true;
+    },
   },
 
   actions: {
     loadJobs(context) {
-      return fetch("../../data.json")
+      return fetch("./data.json")
         .then((response) => {
           return response.json();
         })
@@ -33,14 +38,21 @@ const store = createStore({
             };
           });
           context.commit("setJobs", transformedData);
-          console.log(transformedData);
         });
+    },
+
+    setJobOverview(context) {
+      context.commit("setJobOverview");
     },
   },
 
   getters: {
     jobs(state) {
       return state.jobs;
+    },
+
+    jobOverview(state) {
+      return state.jobOverview;
     },
   },
 });

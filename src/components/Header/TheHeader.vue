@@ -2,7 +2,16 @@
 import IconSun from "../Icons/icon-sun.vue";
 import IconMoon from "../Icons/icon-moon.vue";
 import Logo from "../Icons/icon-logo.vue";
-import JobsFilter from "../Header/JobsFilter.vue";
+import JobsFilter from "../Jobs/JobsFilter.vue";
+import JobHeader from "../Jobs/JobHeader.vue";
+import { useStore } from "vuex";
+import { computed } from "vue";
+
+const store = useStore();
+
+const jobOverview = computed(() => {
+  return store.getters.jobOverview;
+});
 </script>
 
 <template>
@@ -20,7 +29,8 @@ import JobsFilter from "../Header/JobsFilter.vue";
         <IconMoon />
       </div>
     </div>
-    <JobsFilter />
+    <JobHeader v-if="jobOverview" />
+    <JobsFilter v-else />
   </header>
 </template>
 
