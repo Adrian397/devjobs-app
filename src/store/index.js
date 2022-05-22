@@ -20,22 +20,25 @@ const store = createStore({
       state.offer = state.jobs.find((job) => job.id === id);
     },
 
-    foundJobs(state, inputValue) {
+    foundJobs(state, { nameInputValue, locationInputValue }) {
       let copiedJobsArr = [...state.jobs];
-      // console.log(copiedJobsArr);
-      if (inputValue === "") return;
-      else {
+
+      if (nameInputValue !== "") {
         copiedJobsArr = copiedJobsArr.filter(
-          (job) => job.company === inputValue || job.position === inputValue
+          (job) =>
+            job.company === nameInputValue || job.position === nameInputValue
+        );
+      }
+      if (locationInputValue !== "") {
+        copiedJobsArr = copiedJobsArr.filter(
+          (job) => job.location === locationInputValue
         );
       }
 
+      console.log(locationInputValue);
+
       state.filteredJobs = copiedJobsArr;
       console.log(state.filteredJobs);
-      // console.log(copiedJobsArr);
-      // else if (state.jobs.filter((job) => job.company !== inputValue)) {
-      //   console.log("not found");
-      // }
     },
 
     initStore(state) {
@@ -105,8 +108,9 @@ const store = createStore({
       context.commit("initStore");
     },
 
-    foundJobs(context, inputValue) {
-      context.commit("foundJobs", inputValue);
+    foundJobs(context, { nameInputValue, locationInputValue }) {
+      context.commit("foundJobs", { nameInputValue, locationInputValue });
+      console.log({ nameInputValue, locationInputValue });
     },
 
     clearFilteredJobsArr(context) {

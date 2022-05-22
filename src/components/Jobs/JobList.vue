@@ -9,7 +9,6 @@ const store = useStore();
 onMounted(() => {
   store.dispatch("loadJobs");
   store.dispatch("clearFilteredJobsArr");
-  console.log(store.getters.filteredJobOffers);
 });
 
 const jobs = computed(() => {
