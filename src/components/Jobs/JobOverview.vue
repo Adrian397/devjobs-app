@@ -3,11 +3,16 @@ import JobFooter from "./JobFooter.vue";
 import JobDescription from "./JobDescription.vue";
 import { computed } from "vue";
 import { useStore } from "vuex";
+import { onBeforeRouteLeave } from "vue-router";
 
 const store = useStore();
 
 const concreteOffer = computed(() => {
   return store.getters.offer;
+});
+
+onBeforeRouteLeave((to, from) => {
+  store.dispatch("hideJobHeader");
 });
 </script>
 

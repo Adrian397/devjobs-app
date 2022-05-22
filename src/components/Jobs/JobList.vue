@@ -8,11 +8,21 @@ const store = useStore();
 
 onMounted(() => {
   store.dispatch("loadJobs");
+  store.dispatch("clearFilteredJobsArr");
+  console.log(store.getters.filteredJobOffers);
 });
 
 const jobs = computed(() => {
-  return store.getters.jobs;
+  if (!store.getters.filteredJobOffers.length > 0) {
+    return store.getters.jobs;
+  } else {
+    return store.getters.filteredJobOffers;
+  }
 });
+
+// const filteredJobs = computed(() => {
+//   return store.getters.filteredJobs;
+// });
 </script>
 
 <template>

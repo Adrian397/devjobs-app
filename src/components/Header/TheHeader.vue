@@ -38,7 +38,7 @@ const concreteOffer = computed(() => {
       :company="concreteOffer.company"
       :website="concreteOffer.website"
       :logo="concreteOffer.logo"
-      :background-color="concreteOffer.backgroundColor"
+      :logo-background="concreteOffer.logoBackground"
     />
     <JobsFilter v-else />
   </header>

@@ -4,8 +4,9 @@ const store = createStore({
   state() {
     return {
       jobs: [],
-      jobOverview: false,
+      jobHeader: false,
       offer: {},
+      filteredJobs: [],
     };
   },
 
@@ -15,8 +16,26 @@ const store = createStore({
     },
 
     selectedOffer(state, id) {
-      state.jobOverview = !state.jobOverview;
+      state.jobHeader = true;
       state.offer = state.jobs.find((job) => job.id === id);
+    },
+
+    foundJobs(state, inputValue) {
+      let copiedJobsArr = [...state.jobs];
+      // console.log(copiedJobsArr);
+      if (inputValue === "") return;
+      else {
+        copiedJobsArr = copiedJobsArr.filter(
+          (job) => job.company === inputValue || job.position === inputValue
+        );
+      }
+
+      state.filteredJobs = copiedJobsArr;
+      console.log(state.filteredJobs);
+      // console.log(copiedJobsArr);
+      // else if (state.jobs.filter((job) => job.company !== inputValue)) {
+      //   console.log("not found");
+      // }
     },
 
     initStore(state) {
@@ -25,6 +44,18 @@ const store = createStore({
           Object.assign(state, JSON.parse(localStorage.getItem("store")))
         );
       }
+    },
+
+    hideJobHeader(state) {
+      state.jobHeader = false;
+    },
+
+    showJobHeader(state) {
+      state.jobHeader = true;
+    },
+
+    clearFilteredJobsArr(state) {
+      state.filteredJobs = [];
     },
   },
 
@@ -58,8 +89,12 @@ const store = createStore({
         });
     },
 
-    setJobOverview(context) {
-      context.commit("setJobOverview");
+    hideJobHeader(context) {
+      context.commit("hideJobHeader");
+    },
+
+    showJobHeader(context) {
+      context.commit("showJobHeader");
     },
 
     selectedOffer(context, id) {
@@ -69,6 +104,14 @@ const store = createStore({
     initStore(context) {
       context.commit("initStore");
     },
+
+    foundJobs(context, inputValue) {
+      context.commit("foundJobs", inputValue);
+    },
+
+    clearFilteredJobsArr(context) {
+      context.commit("clearFilteredJobsArr");
+    },
   },
 
   getters: {
@@ -77,11 +120,15 @@ const store = createStore({
     },
 
     jobOverview(state) {
-      return state.jobOverview;
+      return state.jobHeader;
     },
 
     offer(state) {
       return state.offer;
+    },
+
+    filteredJobOffers(state) {
+      return state.filteredJobs;
     },
   },
 });

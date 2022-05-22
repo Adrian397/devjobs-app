@@ -1,29 +1,29 @@
 <script setup>
 import { computed } from "vue";
-/*
-// const props = defineProps({
-//   logo: String,
-//   logoBackground: String,
-//   website: String,
-//   company: String,
-// });
 
-// const logoBackgroundColor = computed(() => {
-//   return "background-color: " + concreteOffer.logoBackground;
-// }); */
+const props = defineProps({
+  logo: String,
+  logoBackground: String,
+  website: String,
+  company: String,
+});
+
+const logoBackgroundColor = computed(() => {
+  return "background-color: " + props.logoBackground;
+});
 </script>
 
 <template>
   <div class="job-header">
-    <div class="header-img">
-      <img src="./assets/logos/scoot.svg" alt="job-logo" />
+    <div class="header-img" :style="logoBackgroundColor">
+      <img :src="props.logo" alt="job-logo" />
     </div>
     <div class="header-info">
       <div>
-        <h2 class="header-info__company">Scoot</h2>
-        <p class="header-info__website">scoot.com</p>
+        <h2 class="header-info__company">{{ props.company }}</h2>
+        <p class="header-info__website">{{ props.company }}.com</p>
       </div>
-      <a href="#">Company Site</a>
+      <a :href="props.website">Company Site</a>
     </div>
   </div>
 </template>
@@ -43,7 +43,6 @@ import { computed } from "vue";
 }
 
 .header-img {
-  background-color: hsl(36, 87%, 49%);
   display: flex;
   align-items: center;
   justify-content: center;

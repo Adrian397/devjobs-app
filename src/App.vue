@@ -1,5 +1,6 @@
 <script setup>
 import TheHeader from "./components/Header/TheHeader.vue";
+
 import { useStore } from "vuex";
 
 const store = useStore();

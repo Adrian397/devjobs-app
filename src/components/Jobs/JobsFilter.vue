@@ -1,22 +1,45 @@
 <script setup>
 import IconSearch from "../Icons/icon-search.vue";
 import IconLocation from "../Icons/icon-location.vue";
+import { ref } from "vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+
+const nameFilter = ref("");
+const locationFilter = ref("");
 </script>
 
 <template>
   <div class="header-filter">
     <div class="header-filter__search">
       <IconSearch />
-      <input type="text" placeholder="Filter by title, companies, expertise…" />
+      <input
+        type="text"
+        placeholder="Filter by title, companies, expertise…"
+        ref="nameFilter"
+      />
     </div>
     <div class="header-filter__location">
       <IconLocation />
-      <input type="text" placeholder="Filter by location…" />
+      <input
+        type="text"
+        placeholder="Filter by location…"
+        ref="locationFilter"
+      />
     </div>
     <div class="header-filter__fulltime">
       <input type="checkbox" />
       <p>Full Time Only</p>
-      <button type="button">Search</button>
+      <button
+        type="button"
+        @click="
+          store.dispatch('foundJobs', nameFilter.value);
+          store.dispatch('foundJobs', locationFilter.value);
+        "
+      >
+        Search
+      </button>
     </div>
   </div>
 </template>
@@ -82,6 +105,7 @@ import IconLocation from "../Icons/icon-location.vue";
   border: none;
   outline: none;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 .header-filter__fulltime p {
