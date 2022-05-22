@@ -35,8 +35,8 @@ const locationFilter = ref("");
         type="button"
         @click="
           store.dispatch('foundJobs', {
-            nameFilter: nameFilter.value,
-            locationFilter: locationFilter.value,
+            nameInputValue: nameFilter.value,
+            locationInputValue: locationFilter.value,
           })
         "
       >

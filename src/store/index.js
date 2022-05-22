@@ -23,13 +23,13 @@ const store = createStore({
     foundJobs(state, { nameInputValue, locationInputValue }) {
       let copiedJobsArr = [...state.jobs];
 
-      if (nameInputValue !== "") {
+      if (nameInputValue) {
         copiedJobsArr = copiedJobsArr.filter(
           (job) =>
             job.company === nameInputValue || job.position === nameInputValue
         );
       }
-      if (locationInputValue !== "") {
+      if (locationInputValue) {
         copiedJobsArr = copiedJobsArr.filter(
           (job) => job.location === locationInputValue
         );
