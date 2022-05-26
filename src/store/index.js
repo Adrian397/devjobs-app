@@ -20,22 +20,60 @@ const store = createStore({
       state.offer = state.jobs.find((job) => job.id === id);
     },
 
-    foundJobs(state, { nameInputValue, locationInputValue }) {
+    foundJobs(
+      state,
+      { nameInputValue, locationInputValue, contractCheckboxValue }
+    ) {
       let copiedJobsArr = [...state.jobs];
 
-      if (nameInputValue) {
+      if (!nameInputValue || !locationInputValue) {
+        console.log("not filled in");
+      }
+
+      if (nameInputValue && locationInputValue && contractCheckboxValue) {
+        console.log("all");
+        copiedJobsArr = copiedJobsArr.filter(
+          (job) =>
+            job.company === nameInputValue ||
+            (job.position === nameInputValue &&
+              job.location === locationInputValue &&
+              job.contract === "Full Time")
+        );
+      } else if (nameInputValue && locationInputValue) {
+        copiedJobsArr = copiedJobsArr.filter(
+          (job) =>
+            job.company === nameInputValue ||
+            (job.position === nameInputValue &&
+              job.location === locationInputValue)
+        );
+      } else if (nameInputValue && contractCheckboxValue) {
+        copiedJobsArr = copiedJobsArr.filter(
+          (job) =>
+            job.company === nameInputValue ||
+            (job.position === nameInputValue && job.contract === "Full Time")
+        );
+      } else if (locationInputValue && contractCheckboxValue) {
+        copiedJobsArr = copiedJobsArr.filter(
+          (job) =>
+            job.location === locationInputValue && job.contract === "Full Time"
+        );
+      } else if (nameInputValue) {
+        console.log("first");
         copiedJobsArr = copiedJobsArr.filter(
           (job) =>
             job.company === nameInputValue || job.position === nameInputValue
         );
-      }
-      if (locationInputValue) {
+      } else if (locationInputValue) {
+        console.log("second");
         copiedJobsArr = copiedJobsArr.filter(
           (job) => job.location === locationInputValue
         );
+      } else if (contractCheckboxValue) {
+        console.log("third");
+        copiedJobsArr = copiedJobsArr.filter(
+          (job) => job.contract === "Full Time"
+        );
       }
-
-      console.log(locationInputValue);
 
       state.filteredJobs = copiedJobsArr;
       console.log(state.filteredJobs);
@@ -108,9 +146,20 @@ const store = createStore({
       context.commit("initStore");
     },
 
-    foundJobs(context, { nameInputValue, locationInputValue }) {
-      context.commit("foundJobs", { nameInputValue, locationInputValue });
-      console.log({ nameInputValue, locationInputValue });
+    foundJobs(
+      context,
+      { nameInputValue, locationInputValue, contractCheckboxValue }
+    ) {
+      context.commit("foundJobs", {
+        nameInputValue,
+        locationInputValue,
+        contractCheckboxValue,
+      });
+      console.log({
+        nameInputValue,
+        locationInputValue,
+        contractCheckboxValue,
+      });
     },
 
     clearFilteredJobsArr(context) {

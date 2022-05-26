@@ -7,10 +7,23 @@
 <style scoped>
 main {
   width: 80%;
-  max-width: 80%;
   margin: 7rem auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5rem 17.5rem;
+  grid-template-columns: repeat(3, auto);
+  justify-content: space-between;
+
+  gap: 5rem 0rem;
+}
+@media screen and (max-width: 1215px) {
+  main {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+
+@media screen and (max-width: 830px) {
+  main {
+    grid-template-columns: repeat(1, auto);
+    justify-content: center;
+  }
 }
 </style>

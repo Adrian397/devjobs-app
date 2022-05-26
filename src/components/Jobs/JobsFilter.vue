@@ -8,6 +8,7 @@ const store = useStore();
 
 const nameFilter = ref("");
 const locationFilter = ref("");
+const contractFilter = ref(false);
 </script>
 
 <template>
@@ -29,14 +30,16 @@ const locationFilter = ref("");
       />
     </div>
     <div class="header-filter__fulltime">
-      <input type="checkbox" />
+      <input type="checkbox" v-model="contractFilter" />
       <p>Full Time Only</p>
+      <p>Full Time</p>
       <button
         type="button"
         @click="
           store.dispatch('foundJobs', {
             nameInputValue: nameFilter.value,
             locationInputValue: locationFilter.value,
+            contractCheckboxValue: contractFilter,
           })
         "
       >
@@ -59,6 +62,13 @@ const locationFilter = ref("");
   padding: 0rem 0.5rem;
   border-radius: 5px;
 }
+
+/* @media screen and (max-width: 1200px) {
+  .header-filter{
+width: 90%;
+  }
+  
+} */
 
 .header-filter__search {
   display: flex;
@@ -112,6 +122,21 @@ const locationFilter = ref("");
 
 .header-filter__fulltime p {
   font-weight: bold;
+}
+
+.header-filter__fulltime p:nth-of-type(2) {
+  display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .header-filter__fulltime p:nth-of-type(1) {
+    display: none;
+  }
+
+  .header-filter__fulltime p:nth-of-type(2) {
+    display: flex;
+    font-size: 14px;
+  }
 }
 
 .header-filter__fulltime input {

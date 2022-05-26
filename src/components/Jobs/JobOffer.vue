@@ -22,8 +22,6 @@ const logoBackgroundColor = computed(() => {
   return "background-color: " + props.logoBackground;
 });
 
-// console.log(logoBackgroundColor);
-
 const selectedOffer = () => {
   store.dispatch("selectedOffer", props.id);
 };
