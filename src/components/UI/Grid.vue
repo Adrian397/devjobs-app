@@ -14,13 +14,13 @@ main {
 
   gap: 5rem 0rem;
 }
-@media screen and (max-width: 1215px) {
+@media screen and (max-width: 1250px) {
   main {
     grid-template-columns: repeat(2, auto);
   }
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 825px) {
   main {
     grid-template-columns: repeat(1, auto);
     justify-content: center;

@@ -46,7 +46,7 @@ const concreteOffer = computed(() => {
 
 <style scoped>
 header {
-  background-image: url(../../assets/desktop/bg-pattern-header.svg);
+  background-image: url(./assets/desktop/bg-pattern-header.svg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 100%;
@@ -56,6 +56,12 @@ header {
   flex-direction: column;
   padding: 3rem 0rem;
   position: relative;
+}
+
+@media screen and (max-width: 825px) {
+  header {
+    background-image: url(./assets/mobile/bg-pattern-header.svg);
+  }
 }
 
 .header {

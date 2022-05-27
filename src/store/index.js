@@ -77,6 +77,8 @@ const store = createStore({
 
       state.filteredJobs = copiedJobsArr;
       console.log(state.filteredJobs);
+      console.log(nameInputValue);
+      console.log(locationInputValue);
     },
 
     initStore(state) {

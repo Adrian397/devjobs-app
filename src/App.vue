@@ -10,6 +10,7 @@ store.dispatch("initStore");
 
 <template>
   <TheHeader />
+
   <router-view></router-view>
 </template>
 

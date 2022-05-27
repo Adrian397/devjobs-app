@@ -1,25 +1,57 @@
 <script setup>
 import IconSearch from "../Icons/icon-search.vue";
 import IconLocation from "../Icons/icon-location.vue";
-import { ref } from "vue";
+import { ref, unref, Teleport } from "vue";
 import { useStore } from "vuex";
+import JobFilterModal from "./JobFilterModal.vue";
 
 const store = useStore();
 
 const nameFilter = ref("");
 const locationFilter = ref("");
 const contractFilter = ref(false);
+const modal = ref(false);
+
+const showModal = () => {
+  modal.value = true;
+};
+
+const closeModal = () => {
+  modal.value = false;
+};
+
+const searchResults = () => {
+  store.dispatch("foundJobs", {
+    nameInputValue: unref(nameFilter).value,
+    locationInputValue: unref(locationFilter).value,
+    contractCheckboxValue: unref(contractFilter),
+  });
+};
 </script>
 
 <template>
+  <Teleport to="body">
+    <JobFilterModal
+      v-if="modal"
+      :name-filter="nameFilter"
+      :location-filter="locationFilter"
+      :contract-filter="contractFilter"
+      :close-modal="closeModal"
+    />
+  </Teleport>
   <div class="header-filter">
-    <div class="header-filter__search">
+    <div class="header-filter__title">
       <IconSearch />
       <input
         type="text"
         placeholder="Filter by title, companies, expertise…"
         ref="nameFilter"
       />
+      <button class="header-filter__expand" @click="showModal"></button>
+      <button
+        class="header-filter__title-search"
+        @click="searchResults"
+      ></button>
     </div>
     <div class="header-filter__location">
       <IconLocation />
@@ -33,18 +65,7 @@ const contractFilter = ref(false);
       <input type="checkbox" v-model="contractFilter" />
       <p>Full Time Only</p>
       <p>Full Time</p>
-      <button
-        type="button"
-        @click="
-          store.dispatch('foundJobs', {
-            nameInputValue: nameFilter.value,
-            locationInputValue: locationFilter.value,
-            contractCheckboxValue: contractFilter,
-          })
-        "
-      >
-        Search
-      </button>
+      <button type="button" @click="searchResults">Search</button>
     </div>
   </div>
 </template>
@@ -63,27 +84,71 @@ const contractFilter = ref(false);
   border-radius: 5px;
 }
 
-/* @media screen and (max-width: 1200px) {
-  .header-filter{
-width: 90%;
+/* @media screen and (max-width: 1215px) {
+  .header-filter {
+    width: 90%;
   }
-  
 } */
 
-.header-filter__search {
+.header-filter__title {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   width: 40%;
   height: 100%;
   border-right: 1px solid rgb(224, 220, 220);
+  padding: 0rem 0.8rem;
 }
 
-.header-filter__search input {
+.header-filter__title-search {
+  display: none;
+}
+
+.header-filter__expand {
+  display: none;
+}
+
+.header-filter__title input {
   width: 80%;
   padding: 0.3rem;
   outline: none;
   border: none;
+}
+
+@media screen and (max-width: 825px) {
+  .header-filter__title {
+    width: 100%;
+    border-right: none;
+    justify-content: space-between;
+  }
+
+  .header-filter__title-search {
+    display: flex;
+    outline: none;
+    border: none;
+    background-image: url("./assets/mobile/icon-search.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50% 50%;
+    background-color: rgb(89, 100, 224);
+    border-radius: 5px;
+    padding: 1rem;
+    cursor: pointer;
+  }
+
+  .header-filter__expand {
+    display: flex;
+    outline: none;
+    border: none;
+    background-image: url("./assets/mobile/icon-filter.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50% 50%;
+    padding: 1rem;
+    cursor: pointer;
+    margin-right: 0.5rem;
+    background-color: transparent;
+  }
 }
 
 .header-filter__location {
@@ -93,6 +158,12 @@ width: 90%;
   width: 35%;
   height: 100%;
   border-right: 1px solid rgb(224, 220, 220);
+}
+
+@media screen and (max-width: 825px) {
+  .header-filter__location {
+    display: none;
+  }
 }
 
 .header-filter__location input {
@@ -108,6 +179,12 @@ width: 90%;
   justify-content: space-evenly;
   height: 100%;
   width: 25%;
+}
+
+@media screen and (max-width: 825px) {
+  .header-filter__fulltime {
+    display: none;
+  }
 }
 
 .header-filter__fulltime button {
