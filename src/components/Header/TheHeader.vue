@@ -5,7 +5,7 @@ import Logo from "../Icons/icon-logo.vue";
 import JobsFilter from "../Jobs/JobsFilter.vue";
 import JobHeader from "../Jobs/JobHeader.vue";
 import { useStore } from "vuex";
-import { computed, ref, watchEffect } from "vue";
+import { computed, watchEffect } from "vue";
 
 const store = useStore();
 
@@ -17,14 +17,12 @@ const concreteOffer = computed(() => {
   return store.getters.offer;
 });
 
-const theme = ref(false);
-
 const changeTheme = () => {
-  theme.value = !theme.value;
+  store.commit("changeTheme");
 };
 
 watchEffect(() => {
-  if (!theme.value) {
+  if (!store.getters.currentTheme) {
     document.body.classList.add("light");
     document.body.classList.remove("dark");
   } else {
@@ -41,14 +39,20 @@ watchEffect(() => {
       <div class="header-theme">
         <IconSun />
         <div class="header-theme__switcher">
-          <input type="checkbox" id="checkbox" />
-          <label for="checkbox" @click="changeTheme">
+          <input
+            type="checkbox"
+            id="checkbox"
+            :checked="store.getters.currentTheme"
+            @click="changeTheme"
+          />
+          <label for="checkbox">
             <div class="header-theme__switcher__ball"></div>
           </label>
         </div>
         <IconMoon />
       </div>
     </div>
+
     <JobHeader
       v-if="jobOverview"
       :company="concreteOffer.company"

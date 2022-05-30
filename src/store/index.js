@@ -7,15 +7,14 @@ const store = createStore({
       jobHeader: false,
       offer: {},
       filteredJobs: [],
-      // theme: false,
+      theme: false,
     };
   },
 
   mutations: {
-    // changeTheme(state) {
-    //   state.theme = !state.theme;
-    //   console.log(state.theme);
-    // },
+    changeTheme(state) {
+      state.theme = !state.theme;
+    },
 
     setJobs(state, jobs) {
       state.jobs = jobs;
@@ -32,12 +31,7 @@ const store = createStore({
     ) {
       let copiedJobsArr = [...state.jobs];
 
-      if (!nameInputValue || !locationInputValue) {
-        console.log("not filled in");
-      }
-
       if (nameInputValue && locationInputValue && contractCheckboxValue) {
-        console.log("all");
         copiedJobsArr = copiedJobsArr.filter(
           (job) =>
             job.company === nameInputValue ||
@@ -64,27 +58,21 @@ const store = createStore({
             job.location === locationInputValue && job.contract === "Full Time"
         );
       } else if (nameInputValue) {
-        console.log("first");
         copiedJobsArr = copiedJobsArr.filter(
           (job) =>
             job.company === nameInputValue || job.position === nameInputValue
         );
       } else if (locationInputValue) {
-        console.log("second");
         copiedJobsArr = copiedJobsArr.filter(
           (job) => job.location === locationInputValue
         );
       } else if (contractCheckboxValue) {
-        console.log("third");
         copiedJobsArr = copiedJobsArr.filter(
           (job) => job.contract === "Full Time"
         );
       }
 
       state.filteredJobs = copiedJobsArr;
-      console.log(state.filteredJobs);
-      console.log(nameInputValue);
-      console.log(locationInputValue);
     },
 
     initStore(state) {
@@ -109,9 +97,9 @@ const store = createStore({
   },
 
   actions: {
-    // changeTheme(context) {
-    //   context.commit("changeTheme");
-    // },
+    changeTheme(context) {
+      context.commit("changeTheme");
+    },
     loadJobs(context) {
       return fetch("./data.json")
         .then((response) => {
@@ -166,11 +154,6 @@ const store = createStore({
         locationInputValue,
         contractCheckboxValue,
       });
-      console.log({
-        nameInputValue,
-        locationInputValue,
-        contractCheckboxValue,
-      });
     },
 
     clearFilteredJobsArr(context) {
@@ -179,9 +162,9 @@ const store = createStore({
   },
 
   getters: {
-    // currentTheme(state) {
-    //   return state.theme;
-    // },
+    currentTheme(state) {
+      return state.theme;
+    },
     jobs(state) {
       return state.jobs;
     },

@@ -11,7 +11,6 @@ main {
   display: grid;
   grid-template-columns: repeat(3, auto);
   justify-content: space-between;
-
   gap: 5rem 0rem;
 }
 @media screen and (max-width: 1250px) {
