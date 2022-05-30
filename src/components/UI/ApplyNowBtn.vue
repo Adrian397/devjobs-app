@@ -8,8 +8,15 @@ button {
   border: none;
   outline: none;
   color: white;
-  background-color: rgb(89, 100, 224);
+  font-weight: bold;
+  background-color: var(--violet);
   border-radius: 5px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 825px) {
+  button {
+    width: 100%;
+  }
 }
 </style>

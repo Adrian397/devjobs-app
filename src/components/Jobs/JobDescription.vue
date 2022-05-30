@@ -50,12 +50,23 @@ const props = defineProps({
 main {
   width: 70rem;
   max-width: 90%;
-
-  background: white;
+  background-color: var(--main-color);
   margin: 7rem auto;
   margin-bottom: 4rem;
   padding: 2rem;
   border-radius: 5px;
+}
+
+h2,
+h3 {
+  color: var(--text);
+}
+
+@media screen and (max-width: 825px) {
+  main {
+    margin: 15.5rem auto;
+    margin-bottom: 2.5rem;
+  }
 }
 
 .main-jobtype {
@@ -64,22 +75,24 @@ main {
   align-items: center;
 }
 
+@media screen and (max-width: 825px) {
+  .main-jobtype {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .main-jobtype p {
+    margin-bottom: 2rem;
+  }
+}
+
 .main-jobtype__title h2 {
   margin: 0.3rem 0rem;
 }
 
-/* .main-jobtype button {
-  padding: 0.8rem 1.2rem;
-  border: none;
-  outline: none;
-  color: white;
-  background-color: rgb(89, 100, 224);
-  border-radius: 5px;
-} */
-
 span {
   font-size: 13px;
-  color: rgb(157, 174, 194);
+  color: var(--light-grey);
   display: inline-block;
 }
 .dot {
@@ -89,26 +102,27 @@ span {
 }
 
 .country {
-  color: rgb(89, 100, 224);
+  color: var(--violet);
   font-weight: bold;
   font-size: 15px;
 }
 
 main p:nth-child(2) {
-  margin-top: 1rem;
+  margin-top: 2rem;
   line-height: 1.9rem;
-  color: rgb(110, 128, 152);
+  color: var(--grey);
 }
 
 main p:nth-child(4) {
   line-height: 1.9rem;
-  color: rgb(110, 128, 152);
+  color: var(--grey);
 }
 
 main p:nth-child(7) {
   line-height: 1.9rem;
-  color: rgb(110, 128, 152);
+  color: var(--grey);
 }
+
 ul {
   margin-top: 1rem;
   line-height: 2rem;
@@ -116,10 +130,10 @@ ul {
 }
 ul li {
   padding-left: 1.5rem;
-  color: rgb(110, 128, 152);
+  color: var(--grey);
 }
 ul li::marker {
-  color: rgb(89, 100, 224);
+  color: var(--violet);
   font-weight: bold;
 }
 
@@ -131,11 +145,11 @@ ol {
 
 ol li {
   padding-left: 1.5rem;
-  color: rgb(110, 128, 152);
+  color: var(--grey);
 }
 
 ol li::marker {
-  color: rgb(89, 100, 224);
+  color: var(--violet);
   font-weight: bold;
 }
 

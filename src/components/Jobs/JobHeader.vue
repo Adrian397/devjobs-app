@@ -33,7 +33,7 @@ const logoBackgroundColor = computed(() => {
   width: 70rem;
   height: 7rem;
   max-width: 90%;
-  background-color: white;
+  background-color: var(--main-color);
   border-radius: 5px;
   margin: 0 auto;
   margin-top: -2%;
@@ -52,6 +52,7 @@ const logoBackgroundColor = computed(() => {
 
 .header-img img {
   width: 4rem;
+  padding: 0.4rem;
 }
 
 .header-info {
@@ -59,6 +60,10 @@ const logoBackgroundColor = computed(() => {
   justify-content: space-between;
   width: 80%;
   align-items: center;
+}
+
+.header-info h2 {
+  color: var(--text);
 }
 
 .header-info div {
@@ -70,16 +75,65 @@ const logoBackgroundColor = computed(() => {
 }
 .header-info__website {
   font-size: 14px;
-  color: rgb(157, 174, 194);
+  color: var(--light-grey);
 }
 
 .header-info a {
   margin-right: 2rem;
   padding: 0.9rem 0.8rem;
   text-decoration: none;
-  background-color: rgba(244, 246, 248);
+  background-color: var(--company-btn-background);
   border-radius: 5px;
-  color: rgb(89, 100, 224);
+  color: var(--company-btn-color);
   font-weight: bold;
+}
+
+@media screen and (max-width: 825px) {
+  .job-header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 15rem;
+    top: 90%;
+    bottom: 0;
+  }
+
+  .header-info {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  .header-info div {
+    margin-left: 0rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .header-info div h2 {
+    margin: 0.5rem 0rem;
+  }
+
+  .header-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    padding: 0.3rem;
+    top: -10%;
+    width: 3.5rem;
+    height: 3rem;
+    border-radius: 13px;
+  }
+
+  .header-info a {
+    margin-right: 0;
+    padding: 0.7rem 1rem;
+    text-decoration: none;
+    background-color: rgba(244, 246, 248);
+    border-radius: 5px;
+    color: rgb(89, 100, 224);
+    font-weight: bold;
+  }
 }
 </style>

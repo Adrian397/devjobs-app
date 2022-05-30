@@ -63,7 +63,7 @@ const searchResults = () => {
 .modal {
   width: 80%;
   height: 15.5rem;
-  background: white;
+  background: var(--main-color);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -86,7 +86,7 @@ const searchResults = () => {
   position: absolute;
   width: 100%;
   height: 1px;
-  background-color: rgb(224, 220, 220);
+  background-color: var(--border);
   top: 30%;
 }
 
@@ -95,11 +95,9 @@ const searchResults = () => {
   outline: none;
   border: none;
   height: 2rem;
+  color: var(--text);
+  background-color: var(--main-color);
 }
-
-/* .modal__location-filter input {
-  flex: 1;
-} */
 
 .modal__contract-filter {
   display: flex;
@@ -109,7 +107,7 @@ const searchResults = () => {
 
 .modal__contract-filter p {
   margin-left: 1rem;
-  font-weight: bold;
+  color: var(--text);
 }
 
 .modal__contract-filter input {
@@ -118,7 +116,7 @@ const searchResults = () => {
   appearance: none;
   width: 1.3rem;
   height: 1.3rem;
-  background-color: rgb(224, 220, 220);
+  background-color: var(--checkbox);
   border-radius: 5px;
 }
 
@@ -133,7 +131,7 @@ const searchResults = () => {
 
 .modal__contract-filter input:checked::before {
   transform: scale(1);
-  background: rgb(89, 100, 224);
+  background: var(--violet);
   background-image: url("../../assets/desktop/icon-check.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -147,8 +145,9 @@ const searchResults = () => {
   border-radius: 5px;
   outline: none;
   border: none;
-  background-color: rgb(89, 100, 224);
+  background-color: var(--violet);
   color: white;
+  font-weight: bold;
   cursor: pointer;
 }
 

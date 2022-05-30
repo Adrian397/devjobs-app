@@ -51,7 +51,7 @@ const selectedOffer = () => {
   height: 13rem;
   padding: 0rem 1.3rem;
   position: relative;
-  background: white;
+  background-color: var(--main-color);
   border-radius: 7px;
   display: flex;
   align-items: flex-start;
@@ -65,11 +65,11 @@ a {
   text-decoration: none;
   font-weight: bold;
   font-size: 18px;
-  color: rgba(18, 23, 33, 1);
+  color: var(--text);
 }
 
 a:hover {
-  color: rgba(18, 23, 33, 0.5);
+  color: var(--text-hover);
 }
 
 .dot {
@@ -99,10 +99,11 @@ span {
 
 p {
   font-size: 13px;
+  color: var(--light-grey);
 }
 
 .country {
-  color: rgb(89, 100, 224);
+  color: var(--violet);
   font-weight: bold;
 }
 </style>

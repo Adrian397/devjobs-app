@@ -20,7 +20,7 @@ const props = defineProps({
 footer {
   width: 100%;
   padding: 1.5rem 0rem;
-  background: white;
+  background: var(--main-color);
 }
 
 footer > div {
@@ -34,10 +34,17 @@ footer > div {
 
 .footer-jobtype h3 {
   margin: 0;
+  color: var(--text);
 }
 
 .footer-jobtype p {
   font-size: 13px;
-  color: rgb(110, 128, 152);
+  color: var(--grey);
+}
+
+@media screen and (max-width: 825px) {
+  .footer-jobtype {
+    display: none;
+  }
 }
 </style>

@@ -5,7 +5,7 @@ import Logo from "../Icons/icon-logo.vue";
 import JobsFilter from "../Jobs/JobsFilter.vue";
 import JobHeader from "../Jobs/JobHeader.vue";
 import { useStore } from "vuex";
-import { computed } from "vue";
+import { computed, ref, watchEffect } from "vue";
 
 const store = useStore();
 
@@ -15,6 +15,22 @@ const jobOverview = computed(() => {
 
 const concreteOffer = computed(() => {
   return store.getters.offer;
+});
+
+const theme = ref(false);
+
+const changeTheme = () => {
+  theme.value = !theme.value;
+};
+
+watchEffect(() => {
+  if (!theme.value) {
+    document.body.classList.add("light");
+    document.body.classList.remove("dark");
+  } else {
+    document.body.classList.remove("light");
+    document.body.classList.add("dark");
+  }
 });
 </script>
 
@@ -26,7 +42,7 @@ const concreteOffer = computed(() => {
         <IconSun />
         <div class="header-theme__switcher">
           <input type="checkbox" id="checkbox" />
-          <label for="checkbox">
+          <label for="checkbox" @click="changeTheme">
             <div class="header-theme__switcher__ball"></div>
           </label>
         </div>
@@ -46,7 +62,7 @@ const concreteOffer = computed(() => {
 
 <style scoped>
 header {
-  background-image: url(./assets/desktop/bg-pattern-header.svg);
+  background-image: url(../assets/desktop/bg-pattern-header.svg);
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 100%;
@@ -60,7 +76,7 @@ header {
 
 @media screen and (max-width: 825px) {
   header {
-    background-image: url(./assets/mobile/bg-pattern-header.svg);
+    background-image: url(../assets/mobile/bg-pattern-header.svg);
   }
 }
 
@@ -104,8 +120,12 @@ header {
   width: 1.1rem;
   height: 1.1rem;
   border-radius: 50%;
-  background-color: rgb(89, 100, 224);
+  background-color: var(--violet);
   transition: 180ms transform ease-in-out;
+}
+
+.header-theme__switcher__ball:hover {
+  background-color: var(--violet-hover);
 }
 
 .header-theme__switcher input:checked + label .header-theme__switcher__ball {

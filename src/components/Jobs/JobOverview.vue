@@ -11,7 +11,7 @@ const concreteOffer = computed(() => {
   return store.getters.offer;
 });
 
-onBeforeRouteLeave((to, from) => {
+onBeforeRouteLeave(() => {
   store.dispatch("hideJobHeader");
 });
 </script>

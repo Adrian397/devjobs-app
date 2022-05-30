@@ -7,10 +7,16 @@ const store = createStore({
       jobHeader: false,
       offer: {},
       filteredJobs: [],
+      // theme: false,
     };
   },
 
   mutations: {
+    // changeTheme(state) {
+    //   state.theme = !state.theme;
+    //   console.log(state.theme);
+    // },
+
     setJobs(state, jobs) {
       state.jobs = jobs;
     },
@@ -103,6 +109,9 @@ const store = createStore({
   },
 
   actions: {
+    // changeTheme(context) {
+    //   context.commit("changeTheme");
+    // },
     loadJobs(context) {
       return fetch("./data.json")
         .then((response) => {
@@ -170,6 +179,9 @@ const store = createStore({
   },
 
   getters: {
+    // currentTheme(state) {
+    //   return state.theme;
+    // },
     jobs(state) {
       return state.jobs;
     },

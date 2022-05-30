@@ -18,10 +18,6 @@ const jobs = computed(() => {
     return store.getters.filteredJobOffers;
   }
 });
-
-// const filteredJobs = computed(() => {
-//   return store.getters.filteredJobs;
-// });
 </script>
 
 <template>

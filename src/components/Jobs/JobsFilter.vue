@@ -1,7 +1,7 @@
 <script setup>
 import IconSearch from "../Icons/icon-search.vue";
 import IconLocation from "../Icons/icon-location.vue";
-import { ref, unref, Teleport } from "vue";
+import { ref, unref } from "vue";
 import { useStore } from "vuex";
 import JobFilterModal from "./JobFilterModal.vue";
 
@@ -30,15 +30,14 @@ const searchResults = () => {
 </script>
 
 <template>
-  <Teleport to="body">
-    <JobFilterModal
-      v-if="modal"
-      :name-filter="nameFilter"
-      :location-filter="locationFilter"
-      :contract-filter="contractFilter"
-      :close-modal="closeModal"
-    />
-  </Teleport>
+  <JobFilterModal
+    v-if="modal"
+    :name-filter="nameFilter"
+    :location-filter="locationFilter"
+    :contract-filter="contractFilter"
+    :close-modal="closeModal"
+  />
+
   <div class="header-filter">
     <div class="header-filter__title">
       <IconSearch />
@@ -79,16 +78,10 @@ const searchResults = () => {
   align-items: center;
   height: 3.5rem;
   width: 80%;
-  background-color: white;
+  background-color: var(--main-color);
   padding: 0rem 0.5rem;
   border-radius: 5px;
 }
-
-/* @media screen and (max-width: 1215px) {
-  .header-filter {
-    width: 90%;
-  }
-} */
 
 .header-filter__title {
   display: flex;
@@ -96,7 +89,7 @@ const searchResults = () => {
   justify-content: space-evenly;
   width: 40%;
   height: 100%;
-  border-right: 1px solid rgb(224, 220, 220);
+  border-right: 1px solid var(--border);
   padding: 0rem 0.8rem;
 }
 
@@ -113,6 +106,8 @@ const searchResults = () => {
   padding: 0.3rem;
   outline: none;
   border: none;
+  background-color: var(--main-color);
+  color: var(--text);
 }
 
 @media screen and (max-width: 825px) {
@@ -130,7 +125,7 @@ const searchResults = () => {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50% 50%;
-    background-color: rgb(89, 100, 224);
+    background-color: var(--violet);
     border-radius: 5px;
     padding: 1rem;
     cursor: pointer;
@@ -157,7 +152,7 @@ const searchResults = () => {
   justify-content: space-evenly;
   width: 35%;
   height: 100%;
-  border-right: 1px solid rgb(224, 220, 220);
+  border-right: 1px solid var(--border);
 }
 
 @media screen and (max-width: 825px) {
@@ -171,6 +166,7 @@ const searchResults = () => {
   padding: 0.3rem;
   outline: none;
   border: none;
+  background-color: var(--main-color);
 }
 
 .header-filter__fulltime {
@@ -189,7 +185,7 @@ const searchResults = () => {
 
 .header-filter__fulltime button {
   padding: 0.5rem 1rem;
-  background-color: rgb(89, 100, 224);
+  background-color: var(--violet);
   color: white;
   border: none;
   outline: none;
@@ -199,6 +195,7 @@ const searchResults = () => {
 
 .header-filter__fulltime p {
   font-weight: bold;
+  color: var(--text);
 }
 
 .header-filter__fulltime p:nth-of-type(2) {
@@ -222,7 +219,7 @@ const searchResults = () => {
   appearance: none;
   width: 1.3rem;
   height: 1.3rem;
-  background-color: rgb(224, 220, 220);
+  background-color: var(--checkbox);
   border-radius: 5px;
 }
 
@@ -237,7 +234,7 @@ const searchResults = () => {
 
 .header-filter__fulltime input:checked::before {
   transform: scale(1);
-  background: rgb(89, 100, 224);
+  background: var(--violet);
   background-image: url("../../assets/desktop/icon-check.svg");
   background-repeat: no-repeat;
   background-position: center;
