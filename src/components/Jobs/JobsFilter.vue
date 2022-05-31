@@ -167,6 +167,7 @@ const searchResults = () => {
   outline: none;
   border: none;
   background-color: var(--main-color);
+  color: var(--text);
 }
 
 .header-filter__fulltime {
