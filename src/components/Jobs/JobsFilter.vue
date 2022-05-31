@@ -121,7 +121,7 @@ const searchResults = () => {
     display: flex;
     outline: none;
     border: none;
-    background-image: url("./assets/mobile/icon-search.svg");
+    background-image: url("../assets/mobile/icon-search.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50% 50%;
@@ -135,7 +135,7 @@ const searchResults = () => {
     display: flex;
     outline: none;
     border: none;
-    background-image: url("./assets/mobile/icon-filter.svg");
+    background-image: url("../assets/mobile/icon-filter.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 50% 50%;
