@@ -22,8 +22,16 @@ store.dispatch("initStore");
   font-family: "Kumbh Sans", sans-serif;
 }
 
-body {
+body,
+html,
+#app {
   background-color: var(--background-color);
+  min-height: 100vh;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
 }
 
 .light {

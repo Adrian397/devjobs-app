@@ -21,6 +21,7 @@ footer {
   width: 100%;
   padding: 1.5rem 0rem;
   background: var(--main-color);
+  margin-top: auto;
 }
 
 footer > div {
